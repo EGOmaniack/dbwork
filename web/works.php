@@ -16,7 +16,6 @@ if(file_exists($filename)) {
         while(($line = fgets($handle)) != false) {
             $token = explode( ";", $line );
             if(!$head) { /** пропускаем шапку таблицы */
-                //  $works[] = strpos($token[0],".");
                 if($token[0] != ""){
                     if(strpos($token[0],".") === false){
                         if($razdel == "") { /* Первый раздел */
@@ -42,7 +41,6 @@ if(file_exists($filename)) {
 
                         $works[] = $work;
                         unset($work);
-                        
                     }
                 } /* Конец if цифры нет в 1ой ячейке */
                 else{
@@ -76,18 +74,31 @@ foreach($all_works as $key => $razdel){
     $razdels[] = $irazdel;
     unset($irazdel);
 }
-var_dump($razdels);
+// var_dump($razdels);
 
 /* Упомянутые документы */
 $documents = [];
-// foreach($all_works as $key => $razdel){
-//     $irazdel['name'] = $key;
-//     $irazdel['cost'] = $i * 1000;
+foreach($all_works as $razdel){
+    foreach ($razdel as $work) {
+        foreach ($work['detail'] as $detail) {
+            foreach ($detail['gost'] as $value) {
+                if($value != "") $documents[] = trim($value);
+            }
+        }
+    }
+}
+var_dump($documents);
 
-//     $razdels[] = $irazdel;
-//     unset($irazdel);
-// }
-
+/* Перечень всех деталей */
+$details = [];
+foreach($all_works as $razdel){
+    foreach ($razdel as $value) {
+        foreach ($value['detail'] as $det) {
+            $details[] = $det;
+        }
+    }
+}
+// var_dump($details);
 
 function insert_emp($filename) {
 
