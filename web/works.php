@@ -102,7 +102,7 @@ foreach($all_works as $razdel){
 
 function insert_emp($filename) {
 
-    $dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres password=Rgrur4frg56eq16")
+    $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
     $emps=[];

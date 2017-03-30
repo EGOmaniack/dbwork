@@ -8,7 +8,7 @@ if($_GET['flow']=="pms") insert_pmss('./files/pmss.txt');
 
 function insert_pmss($filename){
 
-    $dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres password=Rgrur4frg56eq16")
+    $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
     $sqlstr = "insert into firms.companies(number, name, comment) values ";

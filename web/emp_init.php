@@ -10,7 +10,7 @@ if($_GET['flow']=="workshop") workshop("./files/workshop.txt");
 
 function insert_professions($filename){
 
-    $dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres password=Rgrur4frg56eq16")
+    $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
     $sqlstr = "insert into staff.w_position(worker_position) values";
@@ -31,14 +31,14 @@ function insert_professions($filename){
             fclose($handle);
         
         }
-    var_dump($profs);
+    // var_dump($profs);
 
     for($i = 0; $i < count($profs); $i++ ) {
         $sqlstr .= "('".$profs[$i]."')";
         if($i+1 != count($profs)) $sqlstr .= ",";
     }
 
-    echo $sqlstr;
+    // echo $sqlstr;
 
     $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
 
@@ -52,7 +52,7 @@ function insert_professions($filename){
 
 function insert_emp($filename) {
 
-    $dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres password=Rgrur4frg56eq16")
+    $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
     $emps=[];
@@ -99,7 +99,7 @@ function insert_emp($filename) {
 
 function workshop($filename){
 
-    $dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres password=Rgrur4frg56eq16")
+    $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
     $sqlstr = "";
@@ -117,7 +117,7 @@ function workshop($filename){
             fclose($handle);
         
         }
-    var_dump($surnames);
+    // var_dump($surnames);
 
 foreach ($surnames as $value) {
     $sqlstr = "insert into staff.workshop ( emp_id ) ";
