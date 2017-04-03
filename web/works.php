@@ -81,8 +81,9 @@ include_once './toDB/'.$_GET['flow'].'.php';
     <div class="wraper">
         <a href="/works.php/?flow=work_sections">1 - Разделы</a><br>
         <a href="/works.php/?flow=repair_jobs">2 - перечень работ</a><br>
-        <a href="/works.php/?flow=details">3 - Расходники(детали)</a><br>
-        <a href="/works.php/?flow=gostosts">4 - ГОСТы и ОСТы</a><br>
+        <a href="/works.php/?flow=repair_jobs_docs">3 - Типы документов</a><br>
+        <a href="/works.php/?flow=details">4 - Расходники(детали)</a><br>
+        <a href="/works.php/?flow=gostosts">5 - ГОСТы и ОСТы</a><br>
         <a href="/index.php">Назад</a>
     </div>
 </body>
