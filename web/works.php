@@ -7,7 +7,71 @@ ini_set('xdebug.var_display_max_data', 1024);
 $filename = './files/works.csv';
 $all_works = [];
 
+$topFather = "main";
+$lastRazdelCount = 0;
+$lastRazdel = "main";
+$RazdelCandidat;
+/* Первая версия */
 /*Считываем данные в $all_works*/
+    // if(file_exists($filename)) {
+    //     $handle = fopen($filename, "r");
+    //     if($handle) {
+    //         $head = true;
+    //         $razdel = "";
+    //         $work = [];
+    //         while(($line = fgets($handle)) != false) {
+    //             $token = explode( ";", $line );
+    //             if(!$head) { /** пропускаем шапку таблицы */
+    //                 if($token[0] != ""){
+    //                     if(strpos($token[0],".") === false){
+    //                         if($razdel == "") { /* Первый раздел */
+    //                             $razdel = $token[1];
+    //                         } else { /* остальные разделы */
+    //                             $all_works[$razdel] = $works;
+    //                             unset($works);
+    //                             $razdel = $token[1];
+    //                         }
+    //                     } else {
+    //                         $razdel_name = $token[1];
+    //                         $work['pp'] = mb_substr($token[0],2);
+    //                         $work['name'] = $token[1];
+    //                         $work['replace'] = $token[2] == "+" ? true : false;
+    //                         $work['code'] = $token[3] == "" ? 'other' : $token[3];
+    //                         $work['detail'][0]['name'] = $token[5];
+    //                         $work['detail'][0]['mark'] = $token[6];
+    //                         if(strpos($token[7],",") === false) {
+    //                             $work['detail'][0]['gost'][] = $token[7];
+    //                         } else {
+    //                             $work['detail'][0]['gost'] = explode(",",$token[7]);
+    //                         }
+    //                         $work['detail'][0]['unit'] = $token[9];
+    //                         $work['detail'][0]['rate'] = floatval($token[10]);
+
+    //                         $works[] = $work;
+    //                         unset($work);
+    //                     }
+    //                 } /* Конец if цифры нет в 1ой ячейке */
+    //                 else{
+    //                     $detail['name'] = $token[5];
+    //                     $detail['mark'] = $token[6];
+    //                     if(strpos($token[7],",") === false) {
+    //                         $detail['gost'][] = $token[7];
+    //                     } else {
+    //                         $detail['gost'] = explode(",",$token[7]);
+    //                     }
+    //                     $detail['unit'] = $token[9];
+    //                     $detail['rate'] = floatval($token[10]);
+
+    //                     $works[count($works)-1]['detail'][] = $detail;
+    //                     unset($detail);
+    //                 }
+    //             }
+    //             if($token[1] == "2"){ $head = false; } /* Нашли шапку таблицы */
+    //         } /* кончились строки */
+    //         $all_works[$razdel] = $works;
+    //     }    
+    // }
+/* Вторая версия */
 if(file_exists($filename)) {
     $handle = fopen($filename, "r");
     if($handle) {
@@ -18,46 +82,20 @@ if(file_exists($filename)) {
             $token = explode( ";", $line );
             if(!$head) { /** пропускаем шапку таблицы */
                 if($token[0] != ""){
-                    if(strpos($token[0],".") === false){
-                        if($razdel == "") { /* Первый раздел */
-                            $razdel = $token[1];
-                        } else { /* остальные разделы */
-                            $all_works[$razdel] = $works;
-                            unset($works);
-                            $razdel = $token[1];
-                        }
-                    } else {
-                        $work['pp'] = mb_substr($token[0],2);
-                        $work['name'] = $token[1];
-                        $work['replace'] = $token[2] == "+" ? true : false;
-                        $work['code'] = $token[3] == "" ? 'other' : $token[3];
-                        $work['detail'][0]['name'] = $token[5];
-                        $work['detail'][0]['mark'] = $token[6];
-                        if(strpos($token[7],",") === false) {
-                            $work['detail'][0]['gost'][] = $token[7];
+                    if( $lastRazdelCount != substr_count($token[0], ".") ){
+                        if( $lastRazdelCount < substr_count($token[0], ".") ) {
+                            $lastRazdel = $RazdelCandidat != null ? $RazdelCandidat : $token[1];
+                            echo "<p style='color:red; margin: 0;'>раздел $lastRazdel</p>";
                         } else {
-                            $work['detail'][0]['gost'] = explode(",",$token[7]);
+                            echo "что-то не так! где мой предок???  ";
                         }
-                        $work['detail'][0]['unit'] = $token[9];
-                        $work['detail'][0]['rate'] = floatval($token[10]);
-
-                        $works[] = $work;
-                        unset($work);
-                    }
-                } /* Конец if цифры нет в 1ой ячейке */
-                else{
-                    $detail['name'] = $token[5];
-                    $detail['mark'] = $token[6];
-                    if(strpos($token[7],",") === false) {
-                        $detail['gost'][] = $token[7];
+                        /* Количество точек отличается - прямой кандидат быть названием раздела  */
+                        $lastRazdelCount = substr_count($token[0], ".");
                     } else {
-                        $detail['gost'] = explode(",",$token[7]);
+                        echo "---";
                     }
-                    $detail['unit'] = $token[9];
-                    $detail['rate'] = floatval($token[10]);
-
-                    $works[count($works)-1]['detail'][] = $detail;
-                    unset($detail);
+                    echo "n=".$lastRazdelCount." pp = ".$token[0]."<br />";
+                    $RazdelCandidat = $token[1];
                 }
             }
             if($token[1] == "2"){ $head = false; } /* Нашли шапку таблицы */
@@ -65,6 +103,7 @@ if(file_exists($filename)) {
         $all_works[$razdel] = $works;
     }    
 }
+
 //  var_dump($all_works);
 
 include_once './toDB/'.$_GET['flow'].'.php';
