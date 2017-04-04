@@ -158,7 +158,7 @@ if(file_exists($filename)) {
  //var_dump($all_works2);
 
 include_once './toDB/'.$_GET['flow'].'.php';
-
+var_dump($_SERVER[0]);
 ?>
 
 <!DOCTYPE html>
@@ -169,12 +169,12 @@ include_once './toDB/'.$_GET['flow'].'.php';
 </head>
 <body>
     <div class="wraper">
-        <a href="/works.php/?flow=work_sections2">1 - Разделы</a><br>
+        <a href="/works.php/?flow=work_sections">1 - Разделы</a><br>
         <a href="/works.php/?flow=repair_jobs">2 - перечень работ</a><br>
         <a href="/works.php/?flow=repair_jobs_docs">3 - Типы документов</a><br>
-        <a href="/works.php/?flow=details">4 - Расходники(детали)</a><br>
+        <!--<a href="/works.php/?flow=details">4 - Расходники(детали)</a><br>
         <a href="/works.php/?flow=gostosts">5 - ГОСТы и ОСТы</a><br>
-        <a href="/index.php">Назад</a>
+        <a href="/index.php">Назад</a>-->
     </div>
 </body>
 </html>
