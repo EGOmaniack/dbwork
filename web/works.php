@@ -159,15 +159,16 @@ include_once './toDB/'.$_GET['flow'].'.php';
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>jobs</title>
 </head>
 <body>
     <div class="wraper">
-        <a href="/works.php/?flow=work_sections">1 - Разделы</a><br>
-        <a href="/works.php/?flow=repair_jobs">2 - перечень работ</a><br>
-        <a href="/works.php/?flow=repair_jobs_docs">3 - Типы документов</a><br>
-        <a href="/works.php/?flow=details">4 - Расходники(детали)</a><br>
+        <a href="/works.php/?flow=work_sections">1 - Разделы</a><br />
+        <a href="/works.php/?flow=repair_jobs">2 - перечень работ</a><br />
+        <a href="/works.php/?flow=repair_jobs_docs">3 - Типы документов</a><br />
+        <a href="/works.php/?flow=details">4 - Расходники(детали)</a><br />
+        <a href="/works.php/?flow=smazka">5 - Смазка</a><br />
         <a href="/index.php">Назад</a>
     </div>
 </body>

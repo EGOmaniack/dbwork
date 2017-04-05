@@ -140,14 +140,14 @@ function workshop($filename){
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Инициализировать сотрудников в БД</title>
 </head>
 <body>
     <div class="wraper">
-        <a href="/emp_init.php/?flow=professions">Professions</a><br>
-        <a href="/emp_init.php/?flow=employeers">Employeers</a><br>
-        <a href="/emp_init.php/?flow=workshop">Workshop</a><br>
+        <a href="/emp_init.php/?flow=professions">Professions</a><br />
+        <a href="/emp_init.php/?flow=employeers">Employeers</a><br />
+        <a href="/emp_init.php/?flow=workshop">Workshop</a><br />
         <a href="/index.php">Назад</a>
     </div>
 </body>
