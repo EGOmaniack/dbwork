@@ -23,14 +23,14 @@ if(file_exists($filename)) {
 $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
-// foreach ($lubs as $value) {
-//     $sqlstr  = "insert into repair_stuff.repair_jobs ( razdel, name ) ";
-//     $sqlstr .= "values ( 3, '".$value['name']."' ) ";
-//     $sqlstr .= ";  ";
+foreach ($lubs as $value) {
+    $sqlstr  = "insert into repair_stuff.repair_jobs ( razdel, name ) ";
+    $sqlstr .= "values ( 3, '".$value['name']."' ) ";
+    $sqlstr .= ";  ";
 
-//     $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
-// }
-// exit;
+    $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
+}
+
 foreach ($lubs as $lub) {
     $sqlstr  = "insert into repair_stuff.smazka ( job_id, points_count, gsm_name, lub_method, mass ) ";
     $sqlstr .= "select rj.id, ".$lub['points_count'].", '".$lub['gsm_name']."', '".$lub['lub_method']."', ".$lub['mass']." ";
