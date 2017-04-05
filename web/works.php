@@ -119,11 +119,8 @@ if(file_exists($filename)) {
                     /* Присваиваем как минимум одну деталь. Остальные присвоим если строка не начинается с цифры */
                     $work['detail'][0]['name'] = $token[5];
                                 $work['detail'][0]['mark'] = $token[6];
-                                if(strpos($token[7],",") === false) {
-                                    $work['detail'][0]['gost'][] = $token[7];
-                                } else {
-                                    $work['detail'][0]['gost'] = explode(",",$token[7]);
-                                }
+                                $work['detail'][0]['gost'] = $token[7];
+                                $work['detail'][0]['size'] = $token[8];
                                 $work['detail'][0]['unit'] = $token[9];
                                 $work['detail'][0]['rate'] = floatval($token[10]);
                     //echo /*"n=".$lastRazdelCount.*/" pp = ".$token[0]." tF- ".$topFather[count($topFather)-1]."<br />";
@@ -132,11 +129,8 @@ if(file_exists($filename)) {
                 } else { /* Конец if цифры нет в 1ой ячейке */
                     $detail['name'] = $token[5];
                     $detail['mark'] = $token[6];
-                    if(strpos($token[7],",") === false) {
-                        $detail['gost'][] = $token[7];
-                    } else {
-                        $detail['gost'] = explode(",",$token[7]);
-                    }
+                    $detail['gost'] = $token[7];
+                    $detail['size'] = $token[8];
                     $detail['unit'] = $token[9];
                     $detail['rate'] = floatval($token[10]);
                     //var_dump($detail);
@@ -155,10 +149,11 @@ if(file_exists($filename)) {
     }    
 }
 
- //var_dump($all_works2);
+// var_dump($all_works2);
+// exit;
 
 include_once './toDB/'.$_GET['flow'].'.php';
-var_dump($_SERVER[0]);
+
 ?>
 
 <!DOCTYPE html>
@@ -172,9 +167,8 @@ var_dump($_SERVER[0]);
         <a href="/works.php/?flow=work_sections">1 - Разделы</a><br>
         <a href="/works.php/?flow=repair_jobs">2 - перечень работ</a><br>
         <a href="/works.php/?flow=repair_jobs_docs">3 - Типы документов</a><br>
-        <!--<a href="/works.php/?flow=details">4 - Расходники(детали)</a><br>
-        <a href="/works.php/?flow=gostosts">5 - ГОСТы и ОСТы</a><br>
-        <a href="/index.php">Назад</a>-->
+        <a href="/works.php/?flow=details">4 - Расходники(детали)</a><br>
+        <a href="/index.php">Назад</a>
     </div>
 </body>
 </html>

@@ -44,7 +44,7 @@ function insert_professions($filename){
 
     pg_free_result($result);
     pg_close($dbconn);
-    echo '<br>done<br>';
+    echo '<br><p style="color=green;">done</p><br>';
     }else{
             echo "<br>"."файла thelist.csv не вижу";
     }
@@ -91,7 +91,7 @@ function insert_emp($filename) {
 
     pg_free_result($result);
     pg_close($dbconn);
-    echo '<br>done<br>';
+    echo '<br><p style="color=blue;">done</p><br>';
     }else{
             echo "<br>"."файла thelist.csv не вижу";
     }
@@ -119,21 +119,22 @@ function workshop($filename){
         }
     // var_dump($surnames);
 
-foreach ($surnames as $value) {
-    $sqlstr = "insert into staff.workshop ( emp_id ) ";
-    $sqlstr .="select p.id ";
-    $sqlstr .="from staff.employees p ";
-    $sqlstr .="where p.surname = '".$value[0]."'";
-    $sqlstr .="and substring(p.name from 1 for 1) = substring( '".$value[1]."' from 1 for 1);";
+    foreach ($surnames as $value) {
+        $sqlstr = "insert into staff.workshop ( emp_id ) ";
+        $sqlstr .="select p.id ";
+        $sqlstr .="from staff.employees p ";
+        $sqlstr .="where p.surname = '".$value[0]."'";
+        $sqlstr .="and substring(p.name from 1 for 1) = substring( '".$value[1]."' from 1 for 1);";
 
-    $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
+        $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
 
-}
-    echo '<br>done<br>';
-    }else{
-            echo "<br>"."файла workshop.txt не вижу";
     }
+        echo '<br><p style="color=red;">done</p><br>';
+        }else{
+                echo "<br>"."файла workshop.txt не вижу";
+        }
 }
+
 ?>
 
 <!DOCTYPE html>

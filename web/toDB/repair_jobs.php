@@ -25,5 +25,5 @@ foreach ($all_works2 as $work) {
 pg_free_result($result);
 pg_close($dbconn);
 
-echo 'done';
+echo __FILE__.'   done';
 ?>

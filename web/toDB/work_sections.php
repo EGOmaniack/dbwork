@@ -7,13 +7,13 @@ foreach($all_works2 as $razdel){
         $raz['pp'] = $razdel['pp'];
         $raz['parent'] = $razdel['parent'];
         $raz['name'] = $razdel['name'];
-        $raz['weight'] = $razdel['cost']/100;
+        $raz['weight'] = $razdel['cost'];
 
         $razdels[] = $raz;
         unset($raz);
     }
 }
-var_dump($razdels);
+// var_dump($razdels);
 
 $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
@@ -38,5 +38,5 @@ foreach ($razdels as $section) {
 pg_free_result($result);
 pg_close($dbconn);
 
-echo 'done  '.__FILE__;
+echo __FILE__.'  done';
 ?>
