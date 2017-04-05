@@ -7,7 +7,7 @@ foreach($all_works2 as $razdel){
         $raz['pp'] = $razdel['pp'];
         $raz['parent'] = $razdel['parent'];
         $raz['name'] = $razdel['name'];
-        $raz['weight'] = $razdel['cost'];
+        $raz['weight'] = 50000 - $razdel['cost'];
 
         $razdels[] = $raz;
         unset($raz);
