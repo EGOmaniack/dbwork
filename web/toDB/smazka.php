@@ -25,7 +25,7 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres
 
 foreach ($lubs as $value) {
     $sqlstr  = "insert into repair_stuff.repair_jobs ( razdel, name ) ";
-    $sqlstr .= "values ( 3, '".$value['name']."' ) ";
+    $sqlstr .= "values ( 4, '".$value['name']."' ) ";
     $sqlstr .= ";  ";
 
     $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());

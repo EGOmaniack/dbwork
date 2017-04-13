@@ -44,7 +44,7 @@ function insert_professions($filename){
 
     pg_free_result($result);
     pg_close($dbconn);
-    echo '<br><p style="color=green;">done</p><br>';
+    echo '<br><p style="color:green;">done</p><br>';
     }else{
             echo "<br>"."файла thelist.csv не вижу";
     }
@@ -91,7 +91,7 @@ function insert_emp($filename) {
 
     pg_free_result($result);
     pg_close($dbconn);
-    echo '<br><p style="color=blue;">done</p><br>';
+    echo '<br><p style="color:blue;">done</p><br>';
     }else{
             echo "<br>"."файла thelist.csv не вижу";
     }
@@ -129,7 +129,7 @@ function workshop($filename){
         $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
 
     }
-        echo '<br><p style="color=red;">done</p><br>';
+        echo '<br><p style="color:red;">done</p><br>';
         }else{
                 echo "<br>"."файла workshop.txt не вижу";
         }
